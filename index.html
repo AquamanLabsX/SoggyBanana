@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoggyBanana - Pixel Art & 2D Animation Editor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-left">
+                <h1 class="logo">🍌 SoggyBanana</h1>
+                <span class="version">v0.1.0</span>
+            </div>
+            <div class="header-center">
+                <span id="project-name">Untitled Project</span>
+            </div>
+            <div class="header-right">
+                <button id="btn-new" class="btn btn-small" title="New Project">New</button>
+                <button id="btn-open" class="btn btn-small" title="Open Project">Open</button>
+                <button id="btn-save" class="btn btn-small btn-primary" title="Save Project">Save</button>
+                <button id="btn-export" class="btn btn-small" title="Export as PNG">Export</button>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Sidebar - Tools -->
+            <aside class="sidebar sidebar-left">
+                <div class="panel">
+                    <h3 class="panel-title">Tools</h3>
+                    <div class="tool-group">
+                        <button class="tool-btn active" data-tool="pencil" title="Pencil (P)">
+                            ✏️ Pencil
+                        </button>
+                        <button class="tool-btn" data-tool="eraser" title="Eraser (E)">
+                            🧹 Eraser
+                        </button>
+                        <button class="tool-btn" data-tool="eyedropper" title="Color Picker (I)">
+                            🎨 Eyedropper
+                        </button>
+                    </div>
+                </div>
+
+                <div class="panel">
+                    <h3 class="panel-title">Color</h3>
+                    <div class="color-picker-section">
+                        <div class="current-color">
+                            <div id="current-color-box" class="color-box" style="background-color: #000000;"></div>
+                            <input type="color" id="color-input" value="#000000" title="Click to change color">
+                        </div>
+                        <button id="btn-swap-colors" class="btn btn-small" title="Swap foreground/background (X)">⇄ Swap</button>
+                    </div>
+                    <h4 class="sub-title">Palette</h4>
+                    <div id="palette-colors" class="palette-grid"></div>
+                </div>
+
+                <div class="panel">
+                    <h3 class="panel-title">View</h3>
+                    <div class="zoom-controls">
+                        <button id="btn-zoom-out" class="btn btn-small" title="Zoom Out (-)">−</button>
+                        <span id="zoom-level">100%</span>
+                        <button id="btn-zoom-in" class="btn btn-small" title="Zoom In (+)">+</button>
+                    </div>
+                    <label class="checkbox">
+                        <input type="checkbox" id="toggle-grid" checked>
+                        <span>Show Grid</span>
+                    </label>
+                </div>
+
+                <div class="panel">
+                    <h3 class="panel-title">History</h3>
+                    <div class="history-controls">
+                        <button id="btn-undo" class="btn btn-small" title="Undo (Ctrl+Z)">↶ Undo</button>
+                        <button id="btn-redo" class="btn btn-small" title="Redo (Ctrl+Y)">↷ Redo</button>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center - Canvas -->
+            <main class="canvas-area">
+                <div class="canvas-container">
+                    <canvas id="pixel-canvas"></canvas>
+                    <div id="grid-overlay" class="grid-overlay"></div>
+                </div>
+            </main>
+
+            <!-- Right Sidebar - Layers & Timeline -->
+            <aside class="sidebar sidebar-right">
+                <!-- Layers Panel -->
+                <div class="panel">
+                    <h3 class="panel-title">Layers</h3>
+                    <div class="layer-controls">
+                        <button id="btn-add-layer" class="btn btn-small btn-primary" title="Add Layer">+ Layer</button>
+                        <button id="btn-delete-layer" class="btn btn-small" title="Delete Layer">🗑 Delete</button>
+                    </div>
+                    <div id="layers-list" class="layers-list"></div>
+                </div>
+
+                <!-- Timeline Panel -->
+                <div class="panel">
+                    <h3 class="panel-title">Animation</h3>
+                    <div class="timeline-controls">
+                        <button id="btn-play-animation" class="btn btn-small btn-primary" title="Play Animation">▶ Play</button>
+                        <button id="btn-stop-animation" class="btn btn-small" title="Stop Animation">⏹ Stop</button>
+                        <label class="small-label">FPS:
+                            <input type="number" id="fps-input" min="1" max="60" value="8" class="fps-input">
+                        </label>
+                    </div>
+
+                    <div class="frame-controls">
+                        <button id="btn-add-frame" class="btn btn-small btn-primary" title="Add Frame">+ Frame</button>
+                        <button id="btn-duplicate-frame" class="btn btn-small" title="Duplicate Frame">📋 Dup</button>
+                        <button id="btn-delete-frame" class="btn btn-small" title="Delete Frame">🗑 Delete</button>
+                    </div>
+
+                    <div id="frames-timeline" class="frames-timeline"></div>
+                </div>
+            </aside>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <span id="status-message">Ready</span>
+        </footer>
+    </div>
+
+    <!-- Hidden file inputs for saving/loading -->
+    <input type="file" id="file-input" accept=".sbproj" style="display: none;">
+
+    <script src="history.js"></script>
+    <script src="canvas.js"></script>
+    <script src="tools.js"></script>
+    <script src="layers.js"></script>
+    <script src="timeline.js"></script>
+    <script src="storage.js"></script>
+    <script src="export.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
